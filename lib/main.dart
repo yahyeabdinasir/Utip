@@ -41,10 +41,9 @@ class _TipappState extends State<Tipapp> {
 
   void decrement() {
     setState(() {
-      if (_personCount > 1){
+      if (_personCount > 1) {
         _personCount--;
       }
-
     });
   }
 
@@ -62,7 +61,6 @@ class _TipappState extends State<Tipapp> {
     );
     return Scaffold(
       appBar: AppBar(
-
         title: Text(
           "Utip",
           style: style!.copyWith(color: theme.colorScheme.onPrimaryContainer),
@@ -146,7 +144,12 @@ class _TipappState extends State<Tipapp> {
                             style: theme.textTheme.titleMedium,
                           ),
                         ),
-                        PersonalCounter(theme: theme, personCount: _personCount, InCrement: increment , Decrement: decrement,),
+                        PersonalCounter(
+                          theme: theme,
+                          personCount: _personCount,
+                          InCrement: increment,
+                          Decrement: decrement,
+                        ),
                       ],
                     ),
 
@@ -170,18 +173,26 @@ class _TipappState extends State<Tipapp> {
                         ),
                       ],
                     ),
+                    // round also make the normal values and removes the digit comes after value .
                     // *100 this makes the int with the digit not between 0 and 1 like 47.39394 so on
-                    Text(("${_tipPercentage*100.toDouble()}")),
+                    Text("${(_tipPercentage * 100).round()}%"),
                     Slider(
-                      value: _tipPercentage , // the variable that we passed triged  the changes of slider
-                        onChanged: (value){
+                      value: _tipPercentage,
+
+                      // the variable that we passed triged  the changes of slider
+                      onChanged: (value) {
                         print("this is the value  {$value}");
                         print("this is the tipPercentage  {$_tipPercentage}");
-                  setState(() {
-                   _tipPercentage = value;
-                  });
-                        }, 
-                    )
+                        setState(() {
+                          _tipPercentage = value;
+                        });
+                      },
+                      min: 0,
+                      max: 0.5,
+                      divisions: 5,  // the number of the discrete that jums each time it's 5
+                      // 5 / 50 = 10 that means the division each time will jumb to the 10
+                      label: "${(_tipPercentage * 100).round()}%",
+                    ),
                     // Text("hello"),
                   ],
                 ),
