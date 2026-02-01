@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:utip/personalCounter.dart';
 
+import 'SliderSplit.dart';
+
 void main() {
   runApp(const MyApp());
 }
