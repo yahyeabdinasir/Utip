@@ -31,6 +31,8 @@ class _TipappState extends State<Tipapp> {
   int _personCount = 1;
   int _countPerPserson = 0;
 
+  double _tipPercentage = 0;
+
   void increment() {
     setState(() {
       _personCount++;
@@ -168,6 +170,18 @@ class _TipappState extends State<Tipapp> {
                         ),
                       ],
                     ),
+                    // *100 this makes the int with the digit not between 0 and 1 like 47.39394 so on
+                    Text(("${_tipPercentage*100.toDouble()}")),
+                    Slider(
+                      value: _tipPercentage , // the variable that we passed triged  the changes of slider
+                        onChanged: (value){
+                        print("this is the value  {$value}");
+                        print("this is the tipPercentage  {$_tipPercentage}");
+                  setState(() {
+                   _tipPercentage = value;
+                  });
+                        }, 
+                    )
                     // Text("hello"),
                   ],
                 ),
