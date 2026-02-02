@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:utip/personalCounter.dart';
+import 'package:utip/total_per_person.dart';
 
 import 'SliderSplit.dart';
 import 'TextWidget.dart';
@@ -40,7 +41,7 @@ class _TipappState extends State<Tipapp> {
 
   late double total = TotalTip() ;
 
-  double TotalPerPerson(){
+  double totalPerPerson(){
     return ((billtotal*_tipPercentage) + (billtotal) / (_personCount));
   }
 
@@ -70,7 +71,7 @@ class _TipappState extends State<Tipapp> {
     print(context.widget);
     // storing the theme to the varaible
     var theme = Theme.of(context);
-    var total = TotalPerPerson();
+    var total = totalPerPerson();
     // copywith it's used to add more the attribute to the existing theme and in order to costomise the default
     // functionaity of the theme
     final style = Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -91,38 +92,10 @@ class _TipappState extends State<Tipapp> {
         mainAxisAlignment: MainAxisAlignment.start,
         // crossAxisAlignment: CrossAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              padding: EdgeInsets.all(20),
-              // margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                // color: const Color.fromARGB(255, 160, 128, 216),
-                color: theme.colorScheme.inversePrimary,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
 
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Total per person", style: style?.copyWith()),
-                  // Text("\$20", style: theme.textTheme.displayMedium),
-                  Text(
-                    // "$_countPerPserson",
-                    "$total",
-
-
-                    style: style?.copyWith(
-                      fontSize: theme.textTheme.displaySmall?.fontSize,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
           //  added the container that surrneded with the border
+          TotalPerPerson(theme: theme, style: style, total: total),
           Padding(
             padding: EdgeInsets.all(20),
             child: Container(
