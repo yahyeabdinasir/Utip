@@ -4,6 +4,7 @@ import 'package:utip/total_per_person.dart';
 
 import 'SliderSplit.dart';
 import 'TextWidget.dart';
+import 'TipRow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -139,26 +140,7 @@ class _TipappState extends State<Tipapp> {
                       ],
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Tip",
-                            style: TextStyle(color: theme.colorScheme.primary),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text('$total'),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    TipRow(theme: theme, total: total),
                     // round also make the normal values and removes the digit comes after value .
                     // *100 this makes the int with the digit not between 0 and 1 like 47.39394 so on
                     Text("${(_tipPercentage * 100).round()}%"),
@@ -180,4 +162,3 @@ class _TipappState extends State<Tipapp> {
     );
   }
 }
-
