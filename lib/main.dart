@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:utip/personalCounter.dart';
 
 import 'SliderSplit.dart';
+import 'TextWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,15 +72,15 @@ class _TipappState extends State<Tipapp> {
       ),
 
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         // crossAxisAlignment: CrossAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10),
             child: Container(
-              // padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
+              // margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 // color: const Color.fromARGB(255, 160, 128, 216),
                 color: theme.colorScheme.inversePrimary,
@@ -107,6 +108,7 @@ class _TipappState extends State<Tipapp> {
           Padding(
             padding: EdgeInsets.all(20),
             child: Container(
+              padding: EdgeInsets.all(20),
               // width: 100,
               // height: 100,
               decoration: BoxDecoration(
@@ -119,21 +121,9 @@ class _TipappState extends State<Tipapp> {
                     // Padding(
                     //   padding: const EdgeInsets.all(8.0),
                     //   child:
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        //  prefix it's the attribute that it's used to add the prefix of the value
-                        prefixIcon: Icon(Icons.attach_money),
-                        // lable also used as the place holder of the text
-                        label: Text("input the bill"),
-                      ),
-                      // keyboard type it's specify the kind of the input
-                      keyboardType: TextInputType.number,
-                      // onchange we can access the value that we passes the input
-                      // onChanged: (String value) {
-                      //   // print("hello type${value}");
-                      // },
-                    ),
+                    TextWidget(amountMony: '10', onchanged: (String value) {
+                      print(value);
+                    },),
 
                     // ),
                     Row(
