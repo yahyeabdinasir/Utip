@@ -36,6 +36,21 @@ class _TipappState extends State<Tipapp> {
 
   double _tipPercentage = 0;
 
+  double billtotal = 100.0;
+
+  late double total = TotalTip() ;
+
+  double TotalPerPerson(){
+    return ((billtotal*_tipPercentage) + (billtotal) / (_personCount));
+  }
+
+
+  double TotalTip(){
+    return (billtotal*_tipPercentage);
+  }
+
+
+
   void increment() {
     setState(() {
       _personCount++;
@@ -55,6 +70,7 @@ class _TipappState extends State<Tipapp> {
     print(context.widget);
     // storing the theme to the varaible
     var theme = Theme.of(context);
+    var total = TotalPerPerson();
     // copywith it's used to add more the attribute to the existing theme and in order to costomise the default
     // functionaity of the theme
     final style = Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -94,7 +110,9 @@ class _TipappState extends State<Tipapp> {
                   Text("Total per person", style: style?.copyWith()),
                   // Text("\$20", style: theme.textTheme.displayMedium),
                   Text(
-                    "$_countPerPserson",
+                    // "$_countPerPserson",
+                    "$total",
+
 
                     style: style?.copyWith(
                       fontSize: theme.textTheme.displaySmall?.fontSize,
@@ -121,7 +139,10 @@ class _TipappState extends State<Tipapp> {
                     // Padding(
                     //   padding: const EdgeInsets.all(8.0),
                     //   child:
-                    TextWidget(amountMony: '10', onchanged: (String value) {
+                    TextWidget(amountMony: billtotal.toString() , onchanged: (String value) {
+                      setState(() {
+                        billtotal = double.parse(value);
+                      });
                       print(value);
                     },),
 
@@ -159,7 +180,7 @@ class _TipappState extends State<Tipapp> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text('$_countPerPserson'),
+                              child: Text('$total'),
                             ),
                           ],
                         ),
